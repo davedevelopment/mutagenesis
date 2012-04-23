@@ -37,6 +37,16 @@ class Mutagenesis_GeneratorTest extends PHPUnit_Framework_TestCase
         ),$generator->getFiles());
     }
 
+    public function testShouldCollateAllFilesValidForMutationTestingExcludingExcludes()
+    {
+        $generator = new \Mutagenesis\Generator;
+        $generator->setSourceDirectory($this->root);
+        $generator->setSourceExcludes(array("*bool1*"));
+        $this->assertEquals(array(
+            $this->root . '/library/bool2.php',
+        ),$generator->getFiles());
+    }
+
     public function testShouldGenerateMutableFileObjects()
     {
         $generator = new \Mutagenesis\Generator;

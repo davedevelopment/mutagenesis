@@ -41,6 +41,13 @@ class Mutagenesis_ConsoleTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->root . '/library', $runner->getSourceDirectory());
     }
 
+    public function testConsoleSetsRunnerSourceExcludesFromCommandLineOptions()
+    {
+        $runner = $this->getMock('Mutagenesis\Runner\Base', array('execute'));
+        \Mutagenesis\Console::main(array('src-exclude' => array("*bool*.php", "*Dave.php")), $runner);
+        $this->assertEquals(array("*bool*.php", "*Dave.php"), $runner->getSourceExcludes());
+    }
+
     public function testConsoleSetsRunnerTestsDirectoryFromCommandLineOptions()
     {
         $runner = $this->getMock('Mutagenesis\Runner\Base', array('execute'));

@@ -39,6 +39,13 @@ abstract class RunnerAbstract
     protected $_sourceDirectory = '';
 
     /**
+     * Array of globs to exclude from the source directory
+     *
+     * @var array
+     */
+    protected $_sourceExcludes = array();
+
+    /**
      * Path to the tests directory of the project being mutated
      *
      * @var string
@@ -209,6 +216,38 @@ abstract class RunnerAbstract
     public function getSourceDirectory()
     {
         return $this->_sourceDirectory;
+    }
+
+    /**
+     * Add to the array of globs to exclude from the source
+     *
+     * @param array $excludes
+     */
+    public function addSourceExcludes(array $excludes)
+    {
+        $this->_sourceExcludes = array_merge($this->_sourceExcludes, $excludes);
+        return $this;
+    }
+
+    /**
+     * Set the array of globs to exclude from the source
+     *
+     * @param array $excludes
+     */
+    public function setSourceExcludes(array $excludes)
+    {
+        $this->_sourceExcludes = $excludes;
+        return $this;
+    }
+
+    /**
+     * Get the array of globs to be excluded from the source directory
+     *
+     * @return array
+     */
+    public function getSourceExcludes()
+    {
+        return $this->_sourceExcludes;
     }
 
     /**
@@ -496,6 +535,7 @@ abstract class RunnerAbstract
     {
         $options = array(
             'src' => $this->getSourceDirectory(),
+            'src-exclude' => $this->getSourceExcludes(),
             'tests' => $this->getTestDirectory(),
             'base' => $this->getBaseDirectory(),
             'cache' => $this->getCacheDirectory(),
@@ -531,6 +571,7 @@ abstract class RunnerAbstract
     {
         $this->_generator = $generator;
         $this->_generator->setSourceDirectory($this->getSourceDirectory());
+        $this->_generator->setSourceExcludes($this->getSourceExcludes());
         return $this;
     }
 
@@ -544,6 +585,7 @@ abstract class RunnerAbstract
         if (!isset($this->_generator)) {
             $this->_generator = new \Mutagenesis\Generator($this);
             $this->_generator->setSourceDirectory($this->getSourceDirectory());
+            $this->_generator->setSourceExcludes($this->getSourceExcludes());
         }
         return $this->_generator;
     }

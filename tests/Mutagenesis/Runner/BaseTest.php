@@ -52,6 +52,13 @@ class Mutagenesis_RunnerTest extends PHPUnit_Framework_TestCase
         $runner->setSourceDirectory($this->badRoot);
     }
 
+    public function testShouldStoreSourceExcludeValue()
+    {
+        $runner = new \Mutagenesis\Runner\Base;
+        $runner->setSourceExcludes($exc = array("123.php", "456.php"));
+        $this->assertEquals($exc, $runner->getSourceExcludes());
+    }
+
     public function testShouldStoreTestDirectoryValue()
     {
         $runner = new \Mutagenesis\Runner\Base;
