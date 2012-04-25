@@ -220,11 +220,17 @@ class Mutable
             case T_DEC:
                 $type = 'OperatorDecrement';
                 break;
+            case T_IS_NOT_EQUAL:
+                $type = 'OperatorComparisonNotEqual';
+                break;
             case T_BOOLEAN_AND:
                 $type = 'BooleanAnd';
                 break;
             case T_BOOLEAN_OR:
                 $type = 'BooleanOr';
+                break;
+            case T_CONSTANT_ENCAPSED_STRING:
+                $type = 'ScalarString';
                 break;
             case T_IF:
             case T_ELSEIF:
