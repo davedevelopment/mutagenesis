@@ -310,7 +310,7 @@ class Mutable
                     continue;
                 }
                 $methodName = $tokens[$index+2][1];
-                $inarg = true;
+                $inarg = true; $roundcount = false;
                 $mutable = array(
                     'file' => $this->getFilename(),
                     'class' => $namespace . "\\" . $className,
@@ -329,7 +329,7 @@ class Mutable
                     continue;
                 } elseif ($roundcount >= 1) {
                     $argTokens[] = $token;
-                } elseif ($roundcount == 0) {
+                } elseif ($roundcount === 0) {
                     $mutable['args'] = $this->_reconstructFromTokens($argTokens);
                     $argTokens = array();
                     $inarg = false;
