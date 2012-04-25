@@ -121,7 +121,7 @@ class Base extends RunnerAbstract
                             $mutation['tokens'],
                             $mutation['index']
                         );
-                        $mutantsCaptured[] = array($mutation, $result['stderr']);
+                        $mutantsCaptured[] = array($mutation, $result[1]['stderr']);
                     }
                 } else if ($result[0] !== 'process failure') {
                     $countMutantsEscaped++;
