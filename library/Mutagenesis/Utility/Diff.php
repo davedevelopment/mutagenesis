@@ -77,6 +77,10 @@ class Diff
      */
     public static function difference($from, $to, $contextLines = 3)
     {
+        if ($from == $to) {
+            return "";
+        }
+
         if (is_string($from)) {
             $from = preg_split('(\r\n|\r|\n)', $from);
         }

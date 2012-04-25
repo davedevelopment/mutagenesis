@@ -226,6 +226,10 @@ class Mutable
             case T_BOOLEAN_OR:
                 $type = 'BooleanOr';
                 break;
+            case T_IF:
+            case T_ELSEIF:
+                $type = 'LogicalIf';
+                break;
             case T_STRING:
                 $type = $this->_parseTString($token);
                 break;

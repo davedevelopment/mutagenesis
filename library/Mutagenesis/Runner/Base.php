@@ -90,6 +90,15 @@ class Base extends RunnerAbstract
             $mutations = $mutable->generate()->getMutations();
             foreach ($mutations as $mutation) {
 
+                /**
+                 * Check the mutation actually mutates...
+                 */
+                $mutation['mutation']->mutate($mutation['tokens'], $mutation['index']);
+
+                if ($mutation['mutation']->getDiff() == "") {
+                    continue;
+                }
+
                 $result = $this->getAdapter()->runTests(
                     $this,
                     false,
