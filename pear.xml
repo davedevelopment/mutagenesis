@@ -61,7 +61,7 @@
             <file name="OperatorDecrement.php" role="php"/>
             <file name="OperatorIncrement.php" role="php"/>
             <file name="OperatorSubtraction.php" role="php"/>
-            <file name="OperatorComparisonNotEqual.php" role="php"/>
+            <file name="ScalarString.php" role="php"/>
           </dir>
           <dir name="Renderer">
             <file name="RendererInterface.php" role="php"/>
